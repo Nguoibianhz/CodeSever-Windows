@@ -1,0 +1,8 @@
+.env
+bin/
+downloads/
+runtime/
+logs/
+proxy/node_modules/
+storage/code-server/logs/
+offline/*.localcache
