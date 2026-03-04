@@ -68,7 +68,8 @@ function Ensure-OfflineBundleExtracted {
 
   $binPartPattern = Join-Path $offlineDir "bin-pack.zip.part*"
   $binParts = Get-ChildItem -Path $binPartPattern -File -ErrorAction SilentlyContinue | Sort-Object Name
-  if (-not (Test-Path -Path $BinDir) -and $binParts.Count -gt 0) {
+  $cloudflaredCheck = Join-Path $BinDir "cloudflared.exe"
+  if (-not (Test-Path -Path $cloudflaredCheck) -and $binParts.Count -gt 0) {
     $tempZip = Join-Path $RuntimeDir "bin-pack.offline.zip"
     Write-Info "Extracting offline binary bundle from repo package."
     Expand-BinaryPartsToZip -PartFiles ($binParts.FullName) -OutputZip $tempZip
